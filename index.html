@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Bus Seating Arrangement</title>
+    <title>School Bus Seating Arrangement (49 Seats)</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
         body { 
@@ -61,22 +61,22 @@
         </div>
         <div class="bus-layout">
             <h2>School Bus Layout</h2>
-            <svg id="busLayout" width="500" height="900"></svg>
+            <svg id="busLayout" width="500" height="920"></svg>
         </div>
     </div>
 
     <script>
-        const seatAssignments = Array(50).fill('');
+        const seatAssignments = Array(49).fill('');
         
         function createSeatInputs() {
             const seatInputs = document.getElementById('seatInputs');
             for (let row = 0; row < 12; row++) {
                 const rowDiv = document.createElement('div');
                 rowDiv.className = 'seat-row';
-                const seatsInRow = row === 11 ? 6 : 4;
+                const seatsInRow = row === 11 ? 5 : 4;
                 for (let col = 0; col < seatsInRow; col++) {
                     const seatNum = row * 4 + col + 1;
-                    if (seatNum <= 50) {
+                    if (seatNum <= 49) {
                         const div = document.createElement('div');
                         div.className = 'seat-input';
                         const input = document.createElement('input');
@@ -100,7 +100,7 @@
         function createBusLayout() {
             const svg = document.getElementById('busLayout');
             const busWidth = 460;
-            const busHeight = 830;
+            const busHeight = 850;
             const seatWidth = 80;
             const seatHeight = 40;
             const seatSpacing = 8;
@@ -160,18 +160,18 @@
             // Create seats and apply two-row text layout
             for (let row = 0; row < 12; row++) {
                 const y = 220 + (seatHeight + seatSpacing) * row;
-                const seatsInRow = row === 11 ? 6 : 4;
+                const seatsInRow = row === 11 ? 5 : 4;
                 for (let col = 0; col < seatsInRow; col++) {
                     let x;
                     if (row === 11) {
-                        // Last row with 6 seats
-                        x = 30 + col * ((busWidth - 60) / 6);
+                        // Last row with 5 seats
+                        x = 30 + col * ((busWidth - 60) / 5);
                     } else {
                         // Regular rows with 4 seats
                         x = col < 2 ? 30 + col * (seatWidth + seatSpacing) : busWidth - 30 - (2 - (col - 2)) * (seatWidth + seatSpacing);
                     }
                     const seatNum = row * 4 + col + 1;
-                    if (seatNum <= 50) {
+                    if (seatNum <= 49) {
                         svg.innerHTML += `
                             <rect x="${x}" y="${y}" width="${seatWidth}" height="${seatHeight}" fill="#4682B4" stroke="#000" stroke-width="1" rx="5" ry="5" />
                             <rect x="${x + 2}" y="${y + 2}" width="${seatWidth - 4}" height="${seatHeight - 4}" fill="url(#diagonalHatch)" />
